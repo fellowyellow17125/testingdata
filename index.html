@@ -6,7 +6,7 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
     <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world-continents.js"></script>
     <title>Global Map Chart</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         Highcharts.mapChart('chart-container', {
             chart: {
-                map: 'custom/world',
+                map: 'custom/world-continents',
                 backgroundColor: '#f4f4f4'
             },
             title: {
@@ -38,6 +38,9 @@
             series: [{
                 name: 'Region',
                 data: [
+                    { 'hc-key': 'NA', value: 0, region: 'North America' },
+                    { 'hc-key': 'SA', value: 0, region: 'South America' },
+                    { 'hc-key': 'US', value: 0, region: 'United States' },
                     { 'hc-key': 'DE', value: 3.3, region: 'Europe' },
                     { 'hc-key': 'AS', value: 3.3, region: 'Asia' },
                     { 'hc-key': 'AF', value: 0.3, region: 'Africa' },
