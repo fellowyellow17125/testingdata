@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <title>Global Map Chart</title>
+</head>
+<body>
+
+<div id="chart-container" style="width: 800px; height: 600px;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Highcharts.mapChart('chart-container', {
+            chart: {
+                map: 'custom/world',
+                backgroundColor: '#f4f4f4'
+            },
+            title: {
+                text: 'Global Map: Percentage Distribution'
+            },
+            subtitle: {
+                text: 'Data Source: Your Source Here'
+            },
+            legend: {
+                enabled: true
+            },
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+            series: [{
+                name: 'Region',
+                data: [
+                    { 'hc-key': 'US-MW', value: 36.3, region: 'Midwest' },
+                    { 'hc-key': 'US-NE', value: 34.7, region: 'Northeast' },
+                    { 'hc-key': 'US-W', value: 12.9, region: 'West' },
+                    { 'hc-key': 'US-S', value: 8.6, region: 'South' },
+                    { 'hc-key': 'EU', value: 3.3, region: 'Europe' },
+                    { 'hc-key': 'AS', value: 3.3, region: 'Asia' },
+                    { 'hc-key': 'AF', value: 0.3, region: 'Africa' },
+                    { 'hc-key': 'AM', value: 0.3, region: 'Americas' },
+                    { 'hc-key': 'ME', value: 0.1, region: 'Middle East' },
+                    { 'hc-key': 'AU', value: 0.1, region: 'Australia' }
+                ],
+                joinBy: 'hc-key',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.value}%'
+                }
+            }]
+        });
+    });
+</script>
+
+</body>
+</html>
