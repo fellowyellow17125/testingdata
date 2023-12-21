@@ -38,21 +38,17 @@
             series: [{
                 name: 'Region',
                 data: [
-                    { 'hc-key': 'US-MW', value: 36.3, region: 'Midwest' },
-                    { 'hc-key': 'US-NE', value: 34.7, region: 'Northeast' },
-                    { 'hc-key': 'US-W', value: 12.9, region: 'West' },
-                    { 'hc-key': 'US-S', value: 8.6, region: 'South' },
-                    { 'hc-key': 'EU', value: 3.3, region: 'Europe' },
+                    { 'hc-key': 'US', value: 92.6, region: 'United States' },
+                    { 'hc-key': 'DE', value: 3.3, region: 'Europe' },
                     { 'hc-key': 'AS', value: 3.3, region: 'Asia' },
                     { 'hc-key': 'AF', value: 0.3, region: 'Africa' },
                     { 'hc-key': 'AM', value: 0.3, region: 'Americas' },
                     { 'hc-key': 'ME', value: 0.1, region: 'Middle East' },
                     { 'hc-key': 'AU', value: 0.1, region: 'Australia' }
                 ],
-                joinBy: 'hc-key',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.regioon}: {point.value:.1f}%'
+                    format: '{point.region}: {point.value:.1f}%'
                 }
             }]
         });
