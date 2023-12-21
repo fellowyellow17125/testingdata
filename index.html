@@ -48,7 +48,9 @@
                 ],
                 dataLabels: {
                     enabled: true,
-                    format: '{point.region}: {point.value:.1f}%'
+                    formatter: function () {
+                        return this.point.region + ': ' + this.point.value.toFixed(1) + '%';
+                    }
                 }
             }]
         });
