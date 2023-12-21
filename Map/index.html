@@ -1,40 +1,115 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>[PUT THE TITLE OF YOUR CHART HERE]</title>
-        <!-- PLACE ALL REPOSITORY CSS FILES IN A BRACKET LIKE THIS -->
-        <!-- build:css inline -->
-        <link rel="stylesheet" href="../../static/main.css" />
-        <!-- /build -->
-    </head>
 
-    <body>
-        <div id="chart-div"></div>
+<head>
+    <title>Highcharts Animated Map</title>
+    <!-- PLACE ALL REPOSITORY CSS FILES IN A BRACKET LIKE THIS -->
+    <!-- build:css inline -->
+    <link rel="stylesheet" href="../../static/main.css" />
+    <style>
+        #container {
+            min-width: 320px;
+            max-width: 800px;
+            height: 500px;
+            margin: 1em auto;
+        }
 
-        <!-- EXTERNAL JS FILES -->
-        <script
-            src="https://code.highcharts.com/11.0.0/highcharts.js"
-            type="text/javascript"
-        ></script>
-        <script
-            src="https://code.highcharts.com/11.0.0/modules/series-label.js"
-            type="text/javascript"
-        ></script>
-        <script
-            src="https://code.highcharts.com/11.0.0/modules/exporting.js"
-            type="text/javascript"
-        ></script>
-        <script
-            src="https://code.highcharts.com/11.0.0/modules/export-data.js"
-            type="text/javascript"
-        ></script>
-        <script
-            src="https://code.highcharts.com/11.0.0/modules/accessibility.js"
-            type="text/javascript"
-        ></script>
+        .animated-line {
+            stroke-dasharray: 8;
+            stroke-dashoffset: 10;
+            animation: dash 5s linear infinite;
+        }
 
-        <!-- PLACE ALL REPOSITORY JS FILES IN A BRACKET LIKE THIS -->
-        <!-- build:js inline -->
-        <script src="main.js" type="text/javascript"></script>
-        <!-- /build -->
-    </body>
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 100;
+            }
+
+            to {
+                stroke-dashoffset: 20;
+            }
+        }
+    </style>
+    <!-- /build -->
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <!-- EXTERNAL JS FILES -->
+    <script src="https://code.highcharts.com/11.0.0/highcharts.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/11.0.0/modules/series-label.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/11.0.0/modules/exporting.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/11.0.0/modules/export-data.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/11.0.0/modules/accessibility.js" type="text/javascript"></script>
+
+    <!-- PLACE ALL REPOSITORY JS FILES IN A BRACKET LIKE THIS -->
+    <!-- build:js inline -->
+    <script src="main.js" type="text/javascript"></script>
+    <!-- /build -->
+
+    <script>
+        // Your Highcharts map configuration goes here
+        document.addEventListener('DOMContentLoaded', function () {
+            Highcharts.mapChart('container', {
+                chart: {
+                    map: 'custom/world', // Use the appropriate map
+                    animation: true,
+                },
+                title: {
+                    text: 'Coffee Trade Map',
+                },
+                series: [{
+                    type: 'mappoint',
+                    name: 'Countries',
+                    color: 'red',
+                    data: [{
+                        name: 'Yemen',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [48.516388, 15.552727]
+                        }
+                    }, {
+                        name: 'Java',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [110.004444, -7.491667]
+                        }
+                    },
+                    // Add other countries as needed
+                    ]
+                }, {
+                    type: 'mapline',
+                    name: 'Trade Routes',
+                    data: [{
+                        geometry: {
+                            type: 'LineString',
+                            coordinates: [
+                                [48.516388, 15.552727], // Yemen
+                                [110.004444, -7.491667] // Java
+                            ]
+                        }
+                    }],
+                    animation: {
+                        duration: 5000, // Animation duration in milliseconds
+                    },
+                    color: 'blue',
+                    lineWidth: 2,
+                    marker: {
+                        enabled: true,
+                        radius: 5,
+                        fillColor: 'blue'
+                    },
+                    states: {
+                        hover: {
+                            lineWidthPlus: 0
+                        }
+                    }
+                }],
+                // Add other options and settings as needed
+            });
+        });
+    </script>
+</body>
+
 </html>
